@@ -9,13 +9,19 @@ const buildControls = props => {
               key={control}
               type={control}
               label={control.toUpperCase()}
-              more={props.moreIng}
-              less={props.lessIng}
+              more={() => props.moreIng(control)}
+              less={() => props.lessIng(control)}
+              disabled={props.disabled[control]}
           />;
         });
   return (
     <div className={classes.BuildControls}>
+      <h2 className={classes.Price}>{props.price.toFixed(2)}$</h2>
       {ingredientControls}
+      <button
+        className={classes.OrderButton}
+        disabled={props.purchasable}
+        onClick={props.clicked}>ORDER</button>
     </div>
   );
 };
